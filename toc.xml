@@ -1,0 +1,9 @@
+<Addon Name="LilVendor" Version="2" Author="Leosky" APIVersion="8" Description="">
+	<!-- Libs -->
+	<!--Script Name="lib/LibError/LibError-1.0.lua"/-->
+	<!--Script Name="lib/LibDialog/LibDialog-1.0.lua"/-->
+
+    <Script Name="LilVendor.lua"/>
+    <Form Name="LilVendor.xml"/>
+    <ReplaceAddon Name="Vendor"/>
+</Addon>
