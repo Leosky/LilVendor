@@ -273,7 +273,7 @@ function LilVendor:DrawListItems(wndParent, tItems)
 			local wndCurr = self:FactoryCacheProduce(wndParent, "VendorListItem", "I"..tCurrItem.idUnique)
 			wndCurr:FindChild("VendorListItemBtn"):SetData(tCurrItem)
 			wndCurr:FindChild("VendorListItemTitle"):SetText(tCurrItem.strName)
-			wndCurr:FindChild("VendorListItemCategory"):SetText(tCurrItem.itemData:GetItemCategoryName() ~= "" and tCurrItem.itemData:GetItemCategoryName() or tCurrItem.itemData:GetItemTypeName())
+			if tCurrItem.itemData then wndCurr:FindChild("VendorListItemCategory"):SetText(tCurrItem.itemData:GetItemCategoryName() ~= "" and tCurrItem.itemData:GetItemCategoryName() or tCurrItem.itemData:GetItemTypeName()) end
 			wndCurr:FindChild("VendorListItemCantUse"):Show(self:HelperPrereqFailed(tCurrItem))
 
 			if tCurrItem.eType == Item.CodeEnumLootItemType.StaticItem then
@@ -917,17 +917,24 @@ function LilVendor:FinalizeBuy(tItemData)
 			self.wndLilVendor:FindChild("AlertCost"):SetMoneySystem(eRepairCurrency)
 			self.wndLilVendor:FindChild("AlertCost"):SetAmount(nRepairAmount)
 		else
-			RepairAllItemsVendor()
-			local monRepairAllCost = GameLib.GetRepairAllCost()
-			self.wndLilVendor:FindChild("AlertCost"):SetMoneySystem(Money.CodeEnumCurrencyType.Credits)
-			self.wndLilVendor:FindChild("AlertCost"):SetAmount(monRepairAllCost)
+			self:RepairAllHelper()
 		end
+		Sound.Play(Sound.PlayUIVendorRepair)
+	elseif self.wndVendor:FindChild(kstrTabRepair):IsChecked() then
+		self:RepairAllHelper()
 		Sound.Play(Sound.PlayUIVendorRepair)
 	else
 		return
 	end
 
 	self.wndLilVendor:FindChild("VendorFlash"):SetSprite("CRB_WindowAnimationSprites:sprWinAnim_BirthSmallTemp")
+end
+
+function Vendor:RepairAllHelper()
+	RepairAllItemsVendor()
+	local monRepairAllCost = GameLib.GetRepairAllCost()
+	self.wndVendor:FindChild("AlertCost"):SetMoneySystem(Money.CodeEnumCurrencyType.Credits)
+	self.wndVendor:FindChild("AlertCost"):SetAmount(monRepairAllCost)
 end
 
 function LilVendor:OnTabBtn(wndHandler, wndControl)
