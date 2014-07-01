@@ -930,7 +930,7 @@ function LilVendor:FinalizeBuy(tItemData)
 	self.wndLilVendor:FindChild("VendorFlash"):SetSprite("CRB_WindowAnimationSprites:sprWinAnim_BirthSmallTemp")
 end
 
-function Vendor:RepairAllHelper()
+function LilVendor:RepairAllHelper()
 	RepairAllItemsVendor()
 	local monRepairAllCost = GameLib.GetRepairAllCost()
 	self.wndVendor:FindChild("AlertCost"):SetMoneySystem(Money.CodeEnumCurrencyType.Credits)
