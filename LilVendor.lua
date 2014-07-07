@@ -933,8 +933,8 @@ end
 function LilVendor:RepairAllHelper()
 	RepairAllItemsVendor()
 	local monRepairAllCost = GameLib.GetRepairAllCost()
-	self.wndVendor:FindChild("AlertCost"):SetMoneySystem(Money.CodeEnumCurrencyType.Credits)
-	self.wndVendor:FindChild("AlertCost"):SetAmount(monRepairAllCost)
+	self.wndLilVendor:FindChild("AlertCost"):SetMoneySystem(Money.CodeEnumCurrencyType.Credits)
+	self.wndLilVendor:FindChild("AlertCost"):SetAmount(monRepairAllCost)
 end
 
 function LilVendor:OnTabBtn(wndHandler, wndControl)
