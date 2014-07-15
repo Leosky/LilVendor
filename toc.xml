@@ -1,4 +1,4 @@
-<Addon Name="LilVendor" Version="5" Author="Leosky" APIVersion="8" Description="">
+<Addon Name="LilVendor" Version="5" Author="Leosky" APIVersion="9" Description="">
 	<!-- Libs -->
 	<!--Script Name="lib/LibError/LibError-1.0.lua"/-->
 	<!--Script Name="lib/LibDialog/LibDialog-1.0.lua"/-->
